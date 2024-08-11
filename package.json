@@ -1,11 +1,11 @@
 {
   "name": "digital-signature",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=20.14.0",
-    "npm": ">=10.8.1"
+    "node": "^20.x",
+    "npm": "^10.x"
   },
   "scripts": {
     "dev": "vite",
@@ -19,11 +19,11 @@
     "react-dom": "^18.3.1",
     "react-router": "^6.26.0",
     "react-router-dom": "^6.26.0",
-    "signature_pad": "^5.0.2",
-    "trim-canvas": "^0.1.2"
+    "signature_pad": "^5.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@types/node": "^22.2.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
