@@ -5,7 +5,7 @@ export const hexToRGB = (hex: string, defaultColor?: string): string => {
 
     const fullHex = hex.replace(
         /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-        (m, r, g, b) => "#" + r + r + g + g + b + b
+        (_m, r, g, b) => "#" + r + r + g + g + b + b
     );
 
     // Match the full hex format and convert to RGB

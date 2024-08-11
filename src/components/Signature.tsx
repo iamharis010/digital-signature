@@ -19,6 +19,10 @@ const Signature = () => {
     const [signaturePad, setSignaturePad] = useState<SignaturePad>();
     const [activePencil, setActivePencil] = useState<number>(4);
 
+    useEffect(()=> {
+        document.title = "SignIt"
+    }, [])
+
     const resizeCanvas = useCallback(() => {
         if (canvasRef.current && signaturePad) {
             const ratio = Math.max(window.devicePixelRatio || 1, 1);
@@ -35,7 +39,6 @@ const Signature = () => {
             setSignaturePad(new SignaturePad(canvas));
         }
     }, [canvasRef]);
-    
 
     useEffect(() => {
         if (signaturePad) {
