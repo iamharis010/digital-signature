@@ -135,10 +135,10 @@ const Signature = () => {
 
             {/* Footer with Buttons */}
             <div className="flex gap-4 flex-row justify-around md:justify-start flex-wrap">
-                <CustomButton onClick={() => handleUndo(signaturePad)} disabled={signaturePad?.isEmpty()} bgColor="bg-pink-100" textColor="text-pink-800" borderColor="border-pink-500" darkBgColor="dark:bg-pink-700" darkTextColor="dark:text-pink-400">
+                <CustomButton onClick={() => handleUndo(signaturePad)} bgColor="bg-pink-100" textColor="text-pink-800" borderColor="border-pink-500" darkBgColor="dark:bg-pink-700" darkTextColor="dark:text-pink-400">
                     Undo
                 </CustomButton>
-                <CustomButton onClick={() => signaturePad?.clear()} disabled={signaturePad?.isEmpty()} bgColor="bg-gray-100" textColor="text-gray-800" borderColor="border-gray-500" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-gray-400">
+                <CustomButton onClick={() => signaturePad?.clear()} bgColor="bg-gray-100" textColor="text-gray-800" borderColor="border-gray-500" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-gray-400">
                     Clear
                 </CustomButton>
                 <CustomButton onClick={() => downloadSignatureAsPNG(signaturePad)} bgColor="bg-green-100" textColor="text-green-800" borderColor="border-green-400" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-green-400">
