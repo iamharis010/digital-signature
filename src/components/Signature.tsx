@@ -106,7 +106,7 @@ const Signature = () => {
 
     
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mt-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <ColorInput
                     label="Background Color"
