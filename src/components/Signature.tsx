@@ -145,7 +145,7 @@ const Signature = () => {
             {/* Signature Canvas */}
             <div className="mx-auto grid grid-cols-1 mb-4 w-100">
                 <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
-                    Signature
+                    Signature 
                 </label>
                 <canvas
                     ref={canvasRef}
