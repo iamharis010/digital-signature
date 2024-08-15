@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SignaturePad from "signature_pad";
 import ColorInput from "@components/atoms/Inputs/ColorInput";
 import { hexToRGB } from "@utils/html";
-import { handleUndo } from "@utils/signaturePad";
+import { undoSignature } from "@utils/signaturePad";
 import { defaultBgColor, pencils } from "@data/Signature.data";
 import { Pencil } from "../@types/Signature/Pencil.types";
 import CustomButton from "@components/atoms/Buttons/CustomButton";
@@ -14,6 +14,8 @@ const Signature = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [signaturePad, setSignaturePad] = useState<SignaturePad>();
     const [activePencil, setActivePencil] = useState<number>(4);
+    const [isSignaturePadEmpty, setIsSignaturePadEmpty] =
+        useState<boolean>(true);
 
     useEffect(() => {
         document.title = "SignIt";
@@ -42,12 +44,17 @@ const Signature = () => {
 
     useEffect(() => {
         if (signaturePad) {
+            setIsSignaturePadEmpty(signaturePad.isEmpty());
             if (!signaturePad.isEmpty()) {
                 return;
             }
 
             resizeCanvas();
             signaturePad.on();
+            signaturePad.addEventListener("beginStroke", () => {
+                console.log("Signature started");
+                setIsSignaturePadEmpty(false);
+            });
         }
 
         return () => {
@@ -84,12 +91,25 @@ const Signature = () => {
         }
     };
 
+    const handleClearSignature = () => {
+        if (signaturePad) {
+            signaturePad.clear();
+            setIsSignaturePadEmpty(true);
+        }
+    };
+
+    const handleUndo = () => {
+        if (signaturePad) {
+            undoSignature(signaturePad);
+            setIsSignaturePadEmpty(signaturePad.isEmpty());
+        }
+    };
+
     window.addEventListener("resize", resizeCanvas);
 
     return (
         <>
-            <div className="container mx-auto mt-16">
-
+            <div className="container mx-auto my-16">
                 {/* Signature Pad Controls */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
                     <ColorInput
@@ -144,7 +164,8 @@ const Signature = () => {
                     </div>
                     <div className="col-start-2 col-span-1 flex flex-row space-x-3 justify-between">
                         <CustomButton
-                            onClick={() => handleUndo(signaturePad)}
+                            disabled={isSignaturePadEmpty}
+                            onClick={handleUndo}
                             bgColor="bg-pink-100"
                             textColor="text-pink-800"
                             borderColor="border-pink-500"
@@ -154,7 +175,8 @@ const Signature = () => {
                             Undo
                         </CustomButton>
                         <CustomButton
-                            onClick={() => signaturePad?.clear()}
+                            disabled={isSignaturePadEmpty}
+                            onClick={handleClearSignature}
                             bgColor="bg-gray-100"
                             textColor="text-gray-800"
                             borderColor="border-gray-500"
@@ -163,7 +185,9 @@ const Signature = () => {
                         >
                             Clear
                         </CustomButton>
-                        {signaturePad && <DownloadButtons signaturePad={signaturePad}/>}
+                        {signaturePad && (
+                            <DownloadButtons signaturePad={signaturePad} />
+                        )}
                     </div>
                 </div>
             </div>
