@@ -68,7 +68,7 @@ export const downloadSignatureAsSVG = (signaturePad?: SignaturePad, includeBackg
     }
 }
 
-export const handleUndo = (signaturePad?: SignaturePad): void => {
+export const undoSignature = (signaturePad?: SignaturePad): void => {
     
     if(!signaturePad) {
         return

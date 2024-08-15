@@ -6,7 +6,7 @@ import {
     downloadSignatureAsJPG,
     downloadSignatureAsPNG,
     downloadSignatureAsSVG,
-    handleUndo,
+    undoSignature,
 } from "@utils/signaturePad";
 import { defaultBgColor, pencils } from "@data/Signature.data";
 import { Pencil } from "../@types/Signature/Pencil.types";
@@ -18,6 +18,7 @@ const Signature = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [signaturePad, setSignaturePad] = useState<SignaturePad>();
     const [activePencil, setActivePencil] = useState<number>(4);
+    const [isSignaturePadEmpty, setIsSignaturePadEmpty] = useState<boolean>(true);
 
     useEffect(()=> {
         document.title = "SignIt"
@@ -43,12 +44,17 @@ const Signature = () => {
     useEffect(() => {
         if (signaturePad) {
             
+            setIsSignaturePadEmpty(signaturePad.isEmpty());
             if(!signaturePad.isEmpty()) {
                 return;
             }
 
             resizeCanvas();
             signaturePad.on();
+            signaturePad.addEventListener("beginStroke", () => {
+                console.log("Signature started");
+                setIsSignaturePadEmpty(false);
+            });
         }
 
         return () => {
@@ -82,8 +88,23 @@ const Signature = () => {
         }
     }
 
+    const handleClearSignature = () => {
+        if (signaturePad) {
+            signaturePad.clear();
+            setIsSignaturePadEmpty(true);
+        }
+    }
+
+    const handleUndo = () => {
+        if (signaturePad) {
+            undoSignature(signaturePad);
+            setIsSignaturePadEmpty(signaturePad.isEmpty());
+        }
+    }
+
     window.addEventListener("resize", resizeCanvas);
 
+    
     return (
         <div className="container mx-auto mt-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -124,7 +145,7 @@ const Signature = () => {
             {/* Signature Canvas */}
             <div className="mx-auto grid grid-cols-1 mb-4 w-100">
                 <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
-                    Signature
+                    Signature 
                 </label>
                 <canvas
                     ref={canvasRef}
@@ -138,10 +159,10 @@ const Signature = () => {
 
             {/* Footer with Buttons */}
             <div className="flex gap-4 flex-row justify-around md:justify-start flex-wrap">
-                <CustomButton onClick={() => handleUndo(signaturePad)} bgColor="bg-pink-100" textColor="text-pink-800" borderColor="border-pink-500" darkBgColor="dark:bg-pink-700" darkTextColor="dark:text-pink-400">
+                <CustomButton disabled={isSignaturePadEmpty} onClick={handleUndo} bgColor="bg-pink-100" textColor="text-pink-800" borderColor="border-pink-500" darkBgColor="dark:bg-pink-700" darkTextColor="dark:text-pink-400">
                     Undo
                 </CustomButton>
-                <CustomButton onClick={() => signaturePad?.clear()} bgColor="bg-gray-100" textColor="text-gray-800" borderColor="border-gray-500" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-gray-400">
+                <CustomButton disabled={isSignaturePadEmpty} onClick={handleClearSignature} bgColor="bg-gray-100" textColor="text-gray-800" borderColor="border-gray-500" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-gray-400">
                     Clear
                 </CustomButton>
                 <CustomButton onClick={() => downloadSignatureAsPNG(signaturePad)} bgColor="bg-green-100" textColor="text-green-800" borderColor="border-green-400" darkBgColor="dark:bg-gray-700" darkTextColor="dark:text-green-400">
