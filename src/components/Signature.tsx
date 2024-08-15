@@ -159,7 +159,7 @@ const Signature = () => {
                             style={{
                                 height: "200px",
                             }}
-                            className="w-full border border-gray-300 rounded-md border-inherit border-dashed border-2"
+                            className="shadow-lg w-full border border-gray-300 rounded-md border-inherit border-dashed border-2"
                         ></canvas>
                     </div>
                     <div className="col-start-2 col-span-1 flex flex-row space-x-3 justify-between">
