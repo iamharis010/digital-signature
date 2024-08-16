@@ -30,7 +30,7 @@ const downloadSignature = (dataURL: string, fileName: string): void => {
     window.URL.revokeObjectURL(url);
 }
 
-export const downloadSignatureAsPNG = (signaturePad?: SignaturePad) => {
+export const downloadSignatureAsPNG = (signaturePad?: SignaturePad): void => {
 
     if(!signaturePad) {
         return
@@ -42,7 +42,7 @@ export const downloadSignatureAsPNG = (signaturePad?: SignaturePad) => {
     }
 }
 
-export const downloadSignatureAsJPG = (signaturePad?: SignaturePad) => {
+export const downloadSignatureAsJPG = (signaturePad?: SignaturePad): void => {
 
     if(!signaturePad) {
         return
@@ -54,7 +54,7 @@ export const downloadSignatureAsJPG = (signaturePad?: SignaturePad) => {
     }
 }
 
-export const downloadSignatureAsSVG = (signaturePad?: SignaturePad, includeBackground: boolean = false) => {
+export const downloadSignatureAsSVG = (signaturePad?: SignaturePad, includeBackground: boolean = false): void => {
     
     if(!signaturePad) {
         return

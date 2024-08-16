@@ -1,3 +1,4 @@
+import { DropdownOption } from "@components/atoms/Buttons/DropdownButton";
 import { Pencils } from "../@types/Signature/Pencil.types";
 
 export const defaultBgColor = "rgb(255, 255, 255)";
@@ -13,4 +14,10 @@ export const pencils: Pencils = [
     { id: 7, label: '1.15', min: 1.1, max: 1.2, description: 'Medium to thick. Suitable for sketching and writing where a bold line is preferred.' },
     { id: 8, label: '1.8', min: 1.75, max: 1.85, description: 'Thick. Ideal for sketching and creating bold lines.' },
     { id: 9, label: '2.0', min: 1.95, max: 2.05, description: 'Very thick. Ideal for sketching and creating bold lines.' },
+];
+
+export const downloadTypes: DropdownOption[] = [
+    { label: "PNG", value: "png" },
+    { label: "JPG", value: "jpg" },
+    { label: "SVG", value: "svg" },
 ];

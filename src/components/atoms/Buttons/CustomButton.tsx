@@ -20,7 +20,7 @@ const CustomButton = ({
     return (
         <button
             onClick={onClick}
-            className={`w-full ${bgColor} ${textColor} text-s text-left font-medium px-2 py-2 rounded ${darkBgColor} ${darkTextColor} ${borderColor} disabled:opacity-50 disabled:cursor-not-allowed sm:w-fit`}
+            className={`w-full ${bgColor} ${textColor} text-s text-left font-medium px-2 py-2 rounded ${darkBgColor} ${darkTextColor} ${borderColor} disabled:opacity-50 disabled:cursor-not-allowed`}
             disabled={disabled}
         >
             {children}

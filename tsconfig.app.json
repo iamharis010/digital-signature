@@ -23,7 +23,8 @@
             "@components/*": ["./src/components/*"],
             "@routes/*": ["./src/routes/*"],
             "@utils/*": ["./src/utils/*"],
-            "@data/*": ["./src/data/*"]
+            "@data/*": ["./src/data/*"],
+            "@assets/*": ["./src/assets/*"]
         }
     },
     "include": ["src"]

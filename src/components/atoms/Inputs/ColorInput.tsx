@@ -1,12 +1,10 @@
-import React from "react";
-
 export type InputFieldProps = {
     label: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const ColorInput = ({label, name, value, onChange, onClick, ...rest}: InputFieldProps) => {
     return (
-        <div className="w-full">
+        <div {...rest}>
             <label
                 htmlFor={name}
                 className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white"
