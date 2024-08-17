@@ -1,5 +1,16 @@
 # Digital Signature
 
+## User Interface Snapshot
+![Project Preview Image](./src/assets/project-preview.png)
+
+## Features
+- Easily draw a digital signature directly on a canvas.
+- Download your signature in JPG, PNG, or SVG format.
+- Select from various pencil thickness options to customize your signature.
+- Choose the pencil color to draw your signature to match your preference.
+- Set a custom background color for the canvas to enhance the visibility of your signature.
+- Undo your last action or clear the entire canvas to start over.
+
 ## Requirements
 
 - **Node.js**: >=20.14.0
