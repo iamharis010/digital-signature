@@ -127,11 +127,11 @@ const Signature = () => {
               <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
                 Stroke Thickness
               </label>
-              <div className="flex justify-between space-x-3">
+              <div className="flex justify-between max-xss:space-x-1.5 space-x-3">
                 {pencils.map((pencil) => (
                   <div
                     key={pencil.id}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center border cursor-pointer transition-transform duration-200 text-xs font-normal ${
+                    className={`w-10 max-xss:w-8 h-10 max-xss:h-8 rounded-full flex items-center justify-center border cursor-pointer transition-transform duration-200 text-xs font-normal ${
                       activePencil === pencil.id
                         ? "ring-1 ring-green-500 scale-110 shadow-lg"
                         : "hover:scale-110 shadow-lg"
