@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type DropdownOption = {
     label: string;
@@ -21,8 +21,27 @@ const DropdownButton = ({
     buttonClassName = "",
     dropdownClassName = "",
     variantClassName = "",
+    disabled,
 }: DropdownButtonProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const handleClick = (event: MouseEvent) => {
+        if (
+            buttonRef.current &&
+            buttonRef.current.contains(event.target as Node)
+        ) {
+            return;
+        }
+        setIsOpen(false);
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleClick);
+        return () => {
+            document.removeEventListener("click", handleClick);
+        };
+    }, []);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -36,9 +55,11 @@ const DropdownButton = ({
     return (
         <div className="relative inline-block text-left">
             <button
+                ref={buttonRef}
                 onClick={toggleDropdown}
                 className={`text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center ${buttonClassName} ${variantClassName}`.trimEnd()}
                 type="button"
+                disabled={disabled}
             >
                 {label}
                 <svg

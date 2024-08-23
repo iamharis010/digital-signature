@@ -109,60 +109,61 @@ const Signature = () => {
 
     return (
         <>
-            <div className="container mx-auto my-16">
+            <div className="container mx-auto my-10 sm:my-16">
                 {/* Signature Pad Controls */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-                    <ColorInput
-                        className="col-start-5 col-span-2"
-                        label="Canvas Background"
-                        name="background-color"
-                        value={bgColor}
-                        onChange={handleBackgroundChange}
-                    />
-                    <ColorInput
-                        className="col-span-2"
-                        label="Signature Color"
-                        name="font-color"
-                        value={fontColor}
-                        onChange={handleFontColorChange}
-                    />
-                    <div className="col-start-5 col-span-4">
-                        <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
-                            Stroke Thickness
-                        </label>
-                        <div className="flex justify-between space-x-3">
-                            {pencils.map((pencil) => (
-                                <div
-                                    key={pencil.id}
-                                    className={`w-10 h-10 rounded-full flex items-center justify-center border cursor-pointer transition-transform duration-200 text-xs font-normal ${
-                                        activePencil === pencil.id
-                                            ? "ring-1 ring-green-500 scale-110 shadow-lg"
-                                            : "hover:scale-110 shadow-lg"
-                                    }`}
-                                    onClick={() => handlePencilClick(pencil.id)}
-                                >
-                                    {pencil.label}
-                                </div>
-                            ))}
+                <div className="w-full sm:w-8/12 md:w-7/12 lg:w-5/12 xl:w-4/12 mx-auto mb-4 px-4 sm:px-0">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <ColorInput
+                            className=""
+                            label="Canvas Background"
+                            name="background-color"
+                            value={bgColor}
+                            onChange={handleBackgroundChange}
+                        />
+                        <ColorInput
+                            className=""
+                            label="Signature Color"
+                            name="font-color"
+                            value={fontColor}
+                            onChange={handleFontColorChange}
+                        />
+                        <div className="sm:col-span-2">
+                            <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
+                                Stroke Thickness
+                            </label>
+                            <div className="flex justify-between max-xss:space-x-1.5 space-x-3">
+                                {pencils.map((pencil) => (
+                                    <div
+                                        key={pencil.id}
+                                        className={`w-10 max-xss:w-8 h-10 max-xss:h-8 rounded-full flex items-center justify-center border cursor-pointer transition-transform duration-200 text-xs font-normal ${
+                                            activePencil === pencil.id
+                                                ? "ring-1 ring-green-500 scale-110 shadow-lg"
+                                                : "hover:scale-110 shadow-lg"
+                                        }`}
+                                        onClick={() =>
+                                            handlePencilClick(pencil.id)
+                                        }
+                                    >
+                                        {pencil.label}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
+                                Signature Canvas
+                            </label>
+                            <canvas
+                                ref={canvasRef}
+                                style={{
+                                    height: "200px",
+                                }}
+                                className="shadow-lg w-full border border-gray-300 rounded-md border-inherit border-dashed border-2 max-sm:max-h-[150px]"
+                            ></canvas>
                         </div>
                     </div>
-                </div>
-
-                {/* Signature Canvas */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                    <div className="col-start-2 col-span-1">
-                        <label className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-white">
-                            Signature Canvas
-                        </label>
-                        <canvas
-                            ref={canvasRef}
-                            style={{
-                                height: "200px",
-                            }}
-                            className="shadow-lg w-full border border-gray-300 rounded-md border-inherit border-dashed border-2"
-                        ></canvas>
-                    </div>
-                    <div className="col-start-2 col-span-1 flex flex-row space-x-3 justify-between">
+                    {/* Signature Canvas */}
+                    <div className="flex flex-row space-x-3 justify-between w-full">
                         <CustomButton
                             disabled={isSignaturePadEmpty}
                             onClick={handleUndo}
