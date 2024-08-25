@@ -20,20 +20,21 @@
     "keywords": [
         "react",
         "signature",
-		"canvas",
-		"digital-signature",
-		"signature-drawing",
-		"signature-download",
-		"JPG",
-		"PNG",
-		"SVG"
+        "canvas",
+        "digital-signature",
+        "signature-drawing",
+        "signature-download",
+        "JPG",
+        "PNG",
+        "SVG"
     ],
-	"author": "Mohammad Haris Rajput <mohdharis010@gmail.com>",
-	"license": "MIT",
+    "author": "Mohammad Haris Rajput <mohdharis010@gmail.com>",
+    "license": "MIT",
     "dependencies": {
         "flowbite": "^2.5.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "react-ga4": "^2.1.0",
         "react-router": "^6.26.0",
         "react-router-dom": "^6.26.0",
         "signature_pad": "^5.0.2"
