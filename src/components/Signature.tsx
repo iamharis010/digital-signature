@@ -7,6 +7,7 @@ import { defaultBgColor, pencils } from "@data/Signature.data";
 import { Pencil } from "../@types/Signature/Pencil.types";
 import CustomButton from "@components/atoms/Buttons/CustomButton";
 import DownloadButtons from "@components/molecules/DownloadButtons/DownloadButtons";
+import ReactGA from "react-ga4";
 
 const Signature = () => {
     const [bgColor, setBgColor] = useState<string>("#FFFFFF");
@@ -19,6 +20,11 @@ const Signature = () => {
 
     useEffect(() => {
         document.title = "SignIt";
+		ReactGA.send({ 
+			hitType: "pageview", 
+			page: window.location.pathname, 
+			title: document.title
+		});
     }, []);
 
     const resizeCanvas = useCallback(() => {
